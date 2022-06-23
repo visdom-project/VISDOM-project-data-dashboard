@@ -486,7 +486,7 @@ const EKGProjectTab = () => {
             />
           </div>
           <div className="timescale-slider">
-            <Form.Label id="range-slider">Week range</Form.Label>
+            <Form.Label id="range-slider">Month range</Form.Label>
             <TwoThumbInputRange
               values={displayedMonth}
               min={1}
