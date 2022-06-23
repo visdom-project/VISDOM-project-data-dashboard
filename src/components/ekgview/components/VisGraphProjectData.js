@@ -21,8 +21,12 @@ const VisGraphProjectData = ({
   pulseRatio,
 }) => {
   // console.log("DAT", data)
-  // const dataInTimeframe = data.filter(month => month.index < displayedMonth[1] && month.index >= displayedMonth[0] - 1);
-  const segments = extractData(data, configs, compress, pulseRatio);
+  const dataInTimeframe = data.filter(
+    (month) =>
+      month.index < displayedMonth[1] + 1 &&
+      month.index >= displayedMonth[0] - 1
+  );
+  const segments = extractData(dataInTimeframe, configs, compress, pulseRatio);
   const [hintTooltipValue, setHintTooltipValue] = useState(false);
 
   const tickValues = [];
