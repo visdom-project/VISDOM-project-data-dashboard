@@ -1,7 +1,7 @@
 import axios from "axios";
 import { configConfiguration } from "../../../services/serviceConfiguration";
 
-const MICROFRONTEND_KEY = "ekgviewproject";
+const MICROFRONTEND_KEY = "myview";
 
 // eslint-disable-next-line no-undef
 const baseUrl = configConfiguration.createUrl(
