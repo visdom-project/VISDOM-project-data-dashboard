@@ -1,11 +1,12 @@
 version: "3"
 
-services: 
-  edu-dashboard:
-    build:
-      dockerfile: Dockerfile
-      context: .
-    ports:
-      - 8000:3000
-    env_file:
-      - .env
+services:
+    project-data:
+        build:
+            dockerfile: Dockerfile
+            context: .
+            args:
+                REACT_APP_CONFIG_HOST: ${REACT_APP_CONFIG_HOST}
+                REACT_APP_ADAPTER_HOST: ${REACT_APP_ADAPTER_HOST}
+        ports:
+            - ${HOST_PORT:-3000}:3000
