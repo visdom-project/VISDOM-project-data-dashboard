@@ -1,3 +1,8 @@
+// Copyright 2022 Tampere University
+// This software was developed as a part of the VISDOM project: https://iteavisdom.org/
+// This source code is licensed under the MIT license. See LICENSE in the repository root directory.
+// Author(s): Duc Hong <duc.hong@tuni.fi>, Nhi Tran <thuyphuongnhi.tran@tuni.fi>, Sulav Rayamajhi<sulav.rayamajhi@tuni.fi>, Ville Heikkilä <ville.heikkila@tuni.fi>, Vivian Lunnikivi <vivian.lunnikivi@tuni.fi>
+
 import React from "react";
 
 const MessageContext = React.createContext();
@@ -12,13 +17,13 @@ const MessageProvider = ({ children }) => {
     statusDialogProps: {
       studentID: "",
       courseID: parseInt(process.env.REACT_APP_COURSE_ID),
-      mode: null
+      mode: null,
     },
     statusProps: {
       sortProps: {},
       displayMode: "list",
-      props: {}
-    }
+      props: {},
+    },
   });
 
   return (
@@ -27,8 +32,8 @@ const MessageProvider = ({ children }) => {
         {children}
       </MessageDispatchContext.Provider>
     </MessageContext.Provider>
-  )
-}
+  );
+};
 
 const useMessageState = () => {
   const context = React.useContext(MessageContext);
@@ -50,8 +55,4 @@ const useMessageDispatch = () => {
 };
 
 //eslint-disable-next-line
-export {
-  MessageProvider,
-  useMessageDispatch,
-  useMessageState
-}
+export { MessageProvider, useMessageDispatch, useMessageState };

@@ -1,14 +1,12 @@
+// Copyright 2022 Tampere University
+// This software was developed as a part of the VISDOM project: https://iteavisdom.org/
+// This source code is licensed under the MIT license. See LICENSE in the repository root directory.
+// Author(s): Duc Hong <duc.hong@tuni.fi>, Nhi Tran <thuyphuongnhi.tran@tuni.fi>, Sulav Rayamajhi<sulav.rayamajhi@tuni.fi>, Ville Heikkilä <ville.heikkila@tuni.fi>, Vivian Lunnikivi <vivian.lunnikivi@tuni.fi>
+
 import React, { useEffect, useState } from "react";
 
-// import StatusView from "./statusview/components/StatusView";
-// import ProgressView from "./progressview/components/ProgressView";
-// import CumulativeView from "./cumulativeview/components/CumulativeView";
-// import StudentView from "./studentview/components/StudentView";
-// import CalendarView from "./spintcalendarview/components/CalendarView";
-// import RadarView from "./radarview/components/RadarView";
-// import RectangleView from "./rectanglemappingview/components/RectangleView";
 import EKGView from "./ekgview/components/EKGView";
-// import GroupOfVisualizations from "./GroupOfVisualizations";
+import GroupOfVisualizations from "./GroupOfVisualizations";
 import Footer from "./Footer";
 
 import { Navbar, Button, Offcanvas, Nav, Container } from "react-bootstrap";
@@ -42,25 +40,9 @@ const VisualizationView = () => {
     microfrontend,
   });
 
-  const COURSE_VIEWS = [
-    // viewObjectFormmat("Status", "statusview", <StatusView />),
-    // viewObjectFormmat("Progress", "progressview", <ProgressView />),
-    // viewObjectFormmat("Cummulative", "cummulativeview", <CumulativeView />)
-  ];
+  const INDIVIDUAL_VIEW = [viewObjectFormmat("EKG", "ekgview", <EKGView />)];
 
-  const INDIVIDUAL_VIEW = [
-    // viewObjectFormmat("Pulse", "studentview", <StudentView />),
-    // viewObjectFormmat("Sprint Calendar", "sprintcalendarview", <CalendarView />),
-    // viewObjectFormmat("Radar", "radarview", <RadarView />),
-    // viewObjectFormmat("Rectangle Mapping", "rectanglemappingview", <RectangleView />),
-    viewObjectFormmat("EKG", "ekgview", <EKGView />),
-  ];
-
-  const GROUP_VIEW = [
-    // viewObjectFormmat("Group of Course Summary", "course", <GroupOfVisualizations views={COURSE_VIEWS} viewkey={viewkey} />),
-    // viewObjectFormmat("Group of individual", "individual", <GroupOfVisualizations views={INDIVIDUAL_VIEW} viewkey={viewkey} />)
-  ];
-  const VIEWS = COURSE_VIEWS.concat(INDIVIDUAL_VIEW).concat(GROUP_VIEW);
+  const VIEWS = INDIVIDUAL_VIEW;
 
   return (
     <div className="visualization-view">

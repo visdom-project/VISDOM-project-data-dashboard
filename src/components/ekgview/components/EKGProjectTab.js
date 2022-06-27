@@ -1,9 +1,13 @@
+// Copyright 2022 Tampere University
+// This software was developed as a part of the VISDOM project: https://iteavisdom.org/
+// This source code is licensed under the MIT license. See LICENSE in the repository root directory.
+// Author(s): Duc Hong <duc.hong@tuni.fi>, Nhi Tran <thuyphuongnhi.tran@tuni.fi>, Sulav Rayamajhi<sulav.rayamajhi@tuni.fi>, Ville Heikkilä <ville.heikkila@tuni.fi>, Vivian Lunnikivi <vivian.lunnikivi@tuni.fi>
+
 import React, { useState, useEffect } from "react";
 import { Form, Button, Table, Alert } from "react-bootstrap";
 import { TwoThumbInputRange } from "react-two-thumb-input-range";
 import VisGraphProjectData from "./VisGraphProjectData";
 
-import { getAllStudentsData, fetchStudentData } from "../services/studentData";
 import {
   getConfigurationsList,
   getConfiguration,
@@ -55,7 +59,7 @@ const EKGProjectTab = () => {
   const displayError = (err) => alert(err.response.data.error);
 
   const init = {
-    type: "Average files changed",
+    type: "Total commits",
     value: "absolute",
     direction: "up",
     shape: "triangle",
@@ -63,77 +67,6 @@ const EKGProjectTab = () => {
     colorFilled: "#ffffff",
     resetZero: "yes",
     scaleFactor: 1,
-  };
-
-  const configList = {
-    settings_1: [
-      {
-        type: "Average additions",
-        value: "absolute",
-        direction: "up",
-        shape: "triangle",
-        color: "#000000",
-        colorFilled: "#ffffff",
-        resetZero: "no",
-        scaleFactor: 1,
-      },
-      {
-        type: "Major violation",
-        value: "absolute",
-        direction: "horizontal",
-        shape: "triangle",
-        color: "#000000",
-        colorFilled: "#ffffff",
-        resetZero: "yes",
-        scaleFactor: 1000,
-      },
-    ],
-    settings_2: [
-      {
-        type: "Code smells",
-        value: "absolute",
-        direction: "up",
-        shape: "rectangle",
-        color: "#000000",
-        colorFilled: "#f44336",
-        resetZero: "no",
-        scaleFactor: 1,
-      },
-
-      {
-        type: "Total issues",
-        value: "absolute",
-        direction: "horizontal",
-        shape: "rectangle",
-        color: "#000000",
-        colorFilled: "#f44336",
-        resetZero: "yes",
-        scaleFactor: 1,
-      },
-
-      {
-        type: "Bugs",
-        value: "absolute",
-        direction: "up",
-        shape: "rectangle",
-        color: "#000000",
-        colorFilled: "#4caf50",
-        resetZero: "no",
-        scaleFactor: 1,
-      },
-    ],
-    settings_3: [
-      {
-        type: "Average time per issue",
-        value: "absolute",
-        direction: "up",
-        shape: "triangle",
-        color: "#000000",
-        colorFilled: "#ffffff",
-        resetZero: "yes",
-        scaleFactor: 1,
-      },
-    ],
   };
 
   const [configs, setConfigs] = useState([init]);
@@ -156,7 +89,9 @@ const EKGProjectTab = () => {
       setProjectIds(data);
     });
     getConfigurationsList()
-      .then((list) => setConfigurationList(list))
+      .then((list) => {
+        setConfigurationList(list);
+      })
       .catch(displayError);
   }, []);
 
@@ -186,13 +121,6 @@ const EKGProjectTab = () => {
         alert("Something not right with the configuration");
       }
     });
-  }, [currentConfiguration]);
-
-  useEffect(() => {
-    if (currentConfiguration.length > 0) {
-      // console.log(configList[currentConfiguration])
-      setConfigs(configList[currentConfiguration]);
-    }
   }, [currentConfiguration]);
 
   useEffect(() => {
@@ -415,7 +343,7 @@ const EKGProjectTab = () => {
                     return;
                   }
                   const publishConfiguration = {
-                    configs: configs.current,
+                    configs: configs,
                     relativeTimescale: relativeTimescale.current,
                     pulseRatio: pulseRatio.current,
                   };
