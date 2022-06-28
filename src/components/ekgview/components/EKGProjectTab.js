@@ -321,7 +321,7 @@ const EKGProjectTab = () => {
           }}
         >
           <div>
-            <InstructionGraph configs={configs.current} />
+            <InstructionGraph configs={configs} />
           </div>
         </ConfigDialog>
         <ConfigDialog

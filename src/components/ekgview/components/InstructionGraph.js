@@ -40,37 +40,19 @@ const createTextPath = (refPath, text, horizontal = false) => {
 const EXAMPLE_DATA = {
   index: 0,
   name: module.name,
-  passed: 1, // true/false
-
-  pointsToPass: 1,
-  maxPoints: 1,
-
-  notPassedPoints: 1,
-  expectedNotPassPoints: 1,
-
-  submission: 1,
-  expectedSubmissions: 1,
-
-  commit: 1,
-  expectedCommit: 1,
-
-  points: 1,
-  expectedPoints: 1,
-
-  numberOfExercises: 1,
-  //new
-  numberOfExercisesAttemped: 1,
-  expectedExercises: 1,
-
-  pointRatio: 1,
-  expectedPointRatio: 1,
-
-  notPassedRatio: 1,
-  expectedNotPassRatio: 1,
+  averageAdditions: 1,
+  averageTimePerIssue: 1,
+  bugs: 1,
+  codeSmells: 1,
+  averageDeletions: 1,
+  averageFileChanged: 1,
+  majorViolation: 1,
+  totalIssues: 1,
+  totalCommits: 1,
+  criticalViolation: 1,
 };
 
 const InstructionGraph = ({ configs }) => {
-  console.log(configs);
   const tempConfigs = configs.map((config) =>
     config.direction === "horizontal"
       ? config
