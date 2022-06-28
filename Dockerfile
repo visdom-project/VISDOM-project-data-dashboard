@@ -1,4 +1,4 @@
-FROM node:16.15.1-slim
+FROM node:16.15.1-slim AS builder
 
 ARG REACT_APP_CONFIG_HOST
 ARG REACT_APP_ADAPTER_HOST
@@ -13,4 +13,8 @@ COPY public/ ./public/
 COPY src/ ./src/
 RUN npm run-script build
 
-ENTRYPOINT [ "npx", "serve", "-s", "build" ]
+
+FROM node:16.15.1-slim
+COPY --from=builder /temp/build /node-build
+
+ENTRYPOINT [ "npx", "serve", "-s", "/node-build" ]
