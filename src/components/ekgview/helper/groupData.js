@@ -97,9 +97,9 @@ export const cumulativeJiraData = (groupedJiraIssueData) => {
     const totalIssues = value.length;
     value.map((jiraVal) => {
       const resolutionTime = moment(jiraVal.resolution_date);
-      const creationTime = moment(jiraVal.update_date);
+      const creationTime = moment(jiraVal.creation_date);
       const resolveTime = Math.round(
-        moment.duration(creationTime.diff(resolutionTime)).asHours()
+        moment.duration(resolutionTime.diff(creationTime)).asHours()
       );
       totalResolutionHours += resolveTime;
     });
