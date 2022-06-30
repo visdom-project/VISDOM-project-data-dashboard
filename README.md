@@ -1,6 +1,20 @@
-# Getting Started with Create React App
+# EKG visualization for project data
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+This repository contains a dashboard containing EKG visualization that can be used to visualize open-source project data based on [The Technical Debt Dataset](https://github.com/clowee/The-Technical-Debt-Dataset). The dashboard is based on [VISDOM Educational Dashboard](https://github.com/visdom-project/VISDOM-educational-dashboard) with an edited version of the EKG visualization. The visualization receives the project using the Dataset adapter from the [VISDOM Data management system](https://github.com/visdom-project/VISDOM-data-management-system/tree/master/documentation/adapters/dataset)
+
+## Deployment with Docker
+
+- Create file `.env` based on the template file: [`.env.template`](.env.template)
+    - `REACT_APP_CONFIG_HOST` should be the URL for a deployed [VISDOM configuration storing server](https://github.com/visdom-project/VISDOM-configuration-server)
+    - `REACT_APP_ADAPTER_HOST` should be the URL to the deployed [Dataset adapter](https://github.com/visdom-project/VISDOM-data-management-system/tree/master/documentation/adapters/dataset)
+    - `HOST_PORT` should be the port number to which the dashboard will be deployed
+- Deploy the dashboard with command:
+
+    ```bash
+    docker-compose up --build --detach
+    ```
+
+To uninstall the dashboard: `docker-compose down`
 
 ## Available Scripts
 
