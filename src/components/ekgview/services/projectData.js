@@ -13,7 +13,7 @@ import {
 } from "../helper/groupData";
 
 export const getProjectIds = async () => {
-  const baseUrl = `${process.env.REACT_APP_ADAPTER_HOST}/dataset/origins?type=project&page=1&pageSize=1000`;
+  const baseUrl = `${process.env.REACT_APP_ADAPTER_HOST}/origins?type=project&page=1&pageSize=1000`;
   let response = await axios.get(baseUrl, {
     headers: {
       Authorization: `Basic ${process.env.REACT_APP_TOKEN}`,
@@ -26,8 +26,7 @@ export const getProjectIds = async () => {
 };
 
 const createQueryUrl = (dataType, queryType, projectId, query) => {
-  const baseUrl = `https://visdom.tlt-cityiot.rd.tuni.fi/dataset/${dataType}?type=${queryType}&page=1&pageSize=10000&query=origin.id==${projectId};${query}`;
-  return baseUrl;
+  return `${process.env.REACT_APP_ADAPTER_HOST}/${dataType}?type=${queryType}&page=1&pageSize=10000&query=origin.id==${projectId};${query}`;
 };
 
 export const getEkgData = async (projectId, year) => {
